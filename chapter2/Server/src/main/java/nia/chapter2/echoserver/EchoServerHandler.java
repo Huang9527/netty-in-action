@@ -28,6 +28,9 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
             throws Exception {
         ctx.writeAndFlush(Unpooled.EMPTY_BUFFER)
                 .addListener(ChannelFutureListener.CLOSE);
+        
+        //关闭用于监听端口的ServerSocketChannel,进而触发整个服务器程序优雅关闭退出。
+        //ctx.channel().parent().close();
     }
 
     @Override

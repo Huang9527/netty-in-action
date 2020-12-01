@@ -45,7 +45,11 @@ public class EchoServer {
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) throws Exception {
+                    	//共享ChannelHandler
                         ch.pipeline().addLast(serverHandler);
+                        
+                        //不共享ChannelHandler
+                        //ch.pipeline().addLast(new EchoServerHandler());
                     }
                 });
 
